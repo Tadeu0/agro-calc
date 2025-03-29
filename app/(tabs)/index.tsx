@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 
 import {
@@ -98,7 +99,7 @@ const x = StyleSheet.create({
   },
   marg: {
     color: "black", // color das caracteres
-    fontSize: 13, // tmanho dos caracteres
+    fontSize: 20, // tmanho dos caracteres
     marginBottom: 5, // serve para dar espaçamento
     //borderWidth: 0.5, // serve para borda
     borderBottomColor: "#363636", // para dar cor da borda
@@ -124,11 +125,11 @@ const x = StyleSheet.create({
   },
   org: {
     backgroundColor: "transparent",
-    marginTop: "110%",
+    marginTop: "120%",
     height: "40%",
     right: "9%",
     width: "80%",
-    marginVertical: "190%",
+    marginVertical: "180%",
     marginHorizontal: 70,
   },
   key: {
@@ -148,8 +149,8 @@ const x = StyleSheet.create({
   },
   esquesenh: {
     left: "66%",
-    color: "blue",
-    marginTop: 9,
+    color: "#000080",
+    marginTop: 20,
   },
   criarcont: {
     marginTop: 30,
@@ -158,9 +159,9 @@ const x = StyleSheet.create({
     alignItems: "center",
   },
   criacont: {
-    left: "67%",
-    color: "blue",
-    marginTop: -22,
+    left: "57%",
+    color: "#000080",
+    marginTop: -19,
     alignItems: "center",
   },
 });

@@ -1,6 +1,4 @@
-import React from "react";
-import { useState } from "react";
-
+import React, { useState } from "react";
 import {
   Text,
   View,
@@ -10,10 +8,11 @@ import {
   ImageBackground,
   KeyboardAvoidingView,
 } from "react-native";
-
+import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Zocial from "@expo/vector-icons/Zocial";
 import Entypo from "@expo/vector-icons/Entypo";
+import { Link } from "expo-router";
 
 const image1 = {
   uri: "https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/9a6a22ea96151cafd3292e41d6c79f06",
@@ -21,7 +20,9 @@ const image1 = {
 
 export default function Index() {
   const [olho, setOlho] = useState("");
-  const [ver, setver] = useState(true);
+  const [ver, setVer] = useState(true);
+
+  const navigation = useNavigation(); // Hook para navegar entre telas
 
   return (
     <ImageBackground source={image1} style={x.imagefundo}>
@@ -33,10 +34,9 @@ export default function Index() {
                 <FontAwesome
                   name="user"
                   size={28}
-                  color="	#363636"
+                  color="#363636"
                   style={x.localico}
                 />
-
                 <TextInput placeholder="Usuário" style={x.marg} />
               </View>
               <View style={x.icone1}>
@@ -57,23 +57,20 @@ export default function Index() {
                   secureTextEntry={ver}
                 />
               </View>
-              <View>
-                <TouchableOpacity onPress={() => setver(!ver)}>
-                  <Entypo name="eye" size={32} color="black" style={x.olho} />
-                </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity>
-                  <Text style={x.esquesenh}> Esqueci a senha </Text>
-                </TouchableOpacity>
-              </View>
+              <TouchableOpacity onPress={() => setVer(!ver)}>
+                <Entypo name="eye" size={32} color="black" style={x.olho} />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={x.esquesenh}> Esqueci a senha </Text>
+              </TouchableOpacity>
               <TouchableOpacity style={x.corbotao}>
-                <Text style={x.botaotext}> ACESSSAR </Text>
+                <Text style={x.botaotext}> ACESSAR </Text>
               </TouchableOpacity>
               <Text style={x.criarcont}> Não tem conta?</Text>
-
               <TouchableOpacity>
-                <Text style={x.criacont}> Criar conta </Text>
+                <Link href="/criar" style={x.criacont}>
+                  Criar conta
+                </Link>
               </TouchableOpacity>
             </View>
           </View>
@@ -90,7 +87,6 @@ const x = StyleSheet.create({
     width: "100%",
     marginTop: "1%",
   },
-
   coles: {
     flex: 1,
     backgroundColor: "transparent",
@@ -98,12 +94,11 @@ const x = StyleSheet.create({
     justifyContent: "center",
   },
   marg: {
-    color: "black", // color das caracteres
-    fontSize: 20, // tmanho dos caracteres
-    marginBottom: 5, // serve para dar espaçamento
-    //borderWidth: 0.5, // serve para borda
-    borderBottomColor: "#363636", // para dar cor da borda
-    padding: 18, // espaçamento das caracteres e a borda
+    color: "black",
+    fontSize: 13,
+    marginBottom: 5,
+    borderBottomColor: "#363636",
+    padding: 18,
     flexDirection: "row",
   },
   corbotao: {
@@ -115,7 +110,7 @@ const x = StyleSheet.create({
     width: "100%",
     left: "1%",
     borderRadius: 120,
-    marginTop: 30,
+    marginTop: 20,
   },
   botaotext: {
     color: "#fff",
@@ -125,12 +120,12 @@ const x = StyleSheet.create({
   },
   org: {
     backgroundColor: "transparent",
-    marginTop: "120%",
-    height: "40%",
-    right: "9%",
-    width: "80%",
-    marginVertical: "180%",
-    marginHorizontal: 70,
+    marginTop: 348,
+    height: "70%",
+    right: "14%",
+    width: "90%",
+    marginLeft: "19%",
+    marginRight: "40%",
   },
   key: {
     flex: 1,
@@ -148,20 +143,22 @@ const x = StyleSheet.create({
     left: "86%",
   },
   esquesenh: {
-    left: "66%",
-    color: "#000080",
-    marginTop: 20,
+    left: "64%",
+    color: "blue",
+    marginTop: 9,
+    fontSize: 20,
   },
   criarcont: {
-    marginTop: 30,
-    left: "24%",
-    fontSize: 14,
+    marginTop: 23,
+    left: "20%",
+    fontSize: 24,
     alignItems: "center",
   },
   criacont: {
-    left: "57%",
-    color: "#000080",
-    marginTop: -19,
+    left: "65%",
+    color: "blue",
+    marginTop: -30,
     alignItems: "center",
+    fontSize: 24,
   },
 });

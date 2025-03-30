@@ -7,12 +7,14 @@ import {
   StyleSheet,
   ImageBackground,
   KeyboardAvoidingView,
+  Pressable,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Zocial from "@expo/vector-icons/Zocial";
 import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { Link, router } from "expo-router";
 
 const image1 = {
   uri: "https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/087933cd6602ba9437e981dacc320608",
@@ -21,26 +23,38 @@ const image1 = {
 export default function Criar() {
   return (
     <ImageBackground source={image1} style={x.imagefundo}>
-      <View style={x.criar}>
-        <View>
+      <KeyboardAvoidingView behavior="height" enabled>
+        <View style={x.criar}>
           <View>
-            <TextInput placeholder="Usuário" style={x.text} />
+            <View>
+              <View>
+                <Text style={x.ali}>Criar Conta</Text>
+              </View>
+              <View>
+                <Pressable onPress={() => router.back()}>
+                  <AntDesign
+                    name="leftcircle"
+                    size={24}
+                    color="black"
+                    style={x.al}
+                  />
+                </Pressable>
+              </View>
+              <TextInput placeholder="Usuário" style={x.text} />
+            </View>
+            <TextInput placeholder="Nome Completo" style={x.text} />
           </View>
-          <TextInput placeholder="Nome Completo" style={x.text} />
+          <View>
+            <TextInput placeholder="Email" style={x.text} />
+          </View>
+          <View>
+            <TextInput placeholder="Senha" style={x.text} />
+          </View>
+          <TouchableOpacity style={x.bota}>
+            <Text style={x.botatext}> ACESSAR </Text>
+          </TouchableOpacity>
         </View>
-        <View>
-          <TextInput placeholder="Email" style={x.text} />
-        </View>
-        <View>
-          <TextInput placeholder="Senha" style={x.text} />
-        </View>
-      </View>
-      <View style={x.sub}>
-        <TouchableOpacity>
-          <AntDesign name="leftcircle" size={24} color="black" style={x.al} />
-        </TouchableOpacity>
-        <Text style={x.ali}>CRIAR CONTA</Text>
-      </View>
+      </KeyboardAvoidingView>
     </ImageBackground>
   );
 }
@@ -54,42 +68,61 @@ const x = StyleSheet.create({
   },
   criar: {
     backgroundColor: "#fcfdff",
-    marginTop: "65%",
-    height: "60%",
+    marginTop: "50%",
+    height: "70%",
     right: "14%",
     width: "90%",
     marginLeft: "19%",
     marginRight: "40%",
     borderRadius: 30,
+    padding: 20,
   },
   text: {
     fontSize: 24,
     marginTop: 62,
     marginLeft: 10,
-    borderWidth: 3,
-    borderRadius: 40,
+    borderWidth: 5,
+    borderRadius: 20,
     marginBottom: -40,
   },
-  sub: {
-    backgroundColor: "#fcfdff",
-    marginTop: "-248%",
-    height: "60%",
-    right: "14%",
-    width: "190%",
-    marginLeft: "10%",
-    marginRight: "40%",
-    borderRadius: 30,
-  },
+
   ali: {
-    marginTop: -42,
-    marginLeft: "17%",
-    fontSize: 38,
+    backgroundColor: "#fcfdff",
+    marginTop: -188,
+    marginLeft: "-46%",
+    marginRight: "8%",
+    fontSize: 55,
     fontWeight: "bold",
+    width: "696%",
+    paddingLeft: 250,
   },
   al: {
-    marginTop: 378,
-    marginLeft: "3%",
-    fontSize: 38,
+    marginTop: -168,
+    marginLeft: "-70%",
+    marginRight: "8%",
+    fontSize: 45,
     fontWeight: "bold",
+    width: "696%",
+    paddingLeft: 250,
+  },
+  key: {
+    flex: 1,
+  },
+  bota: {
+    backgroundColor: "#006400",
+    height: "14%",
+    width: "70%",
+    left: "1%",
+    borderRadius: 120,
+    marginTop: 80,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: 50,
+  },
+  botatext: {
+    color: "#fff",
+    fontSize: 40,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

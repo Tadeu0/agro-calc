@@ -21,8 +21,7 @@ const image1 = {
 export default function Index() {
   const [olho, setOlho] = useState("");
   const [ver, setVer] = useState(true);
-
-  const navigation = useNavigation(); // Hook para navegar entre telas
+  const [erro, setErro] = useState(null);
 
   return (
     <ImageBackground source={image1} style={x.imagefundo}>
@@ -39,15 +38,7 @@ export default function Index() {
                 />
                 <TextInput placeholder="Usuário" style={x.marg} />
               </View>
-              <View style={x.icone1}>
-                <Zocial
-                  name="gmail"
-                  size={24}
-                  color="black"
-                  style={x.localico}
-                />
-                <TextInput placeholder="exemplo@gmail.com" style={x.marg} />
-              </View>
+
               <View style={x.icone1}>
                 <TextInput
                   placeholder="Senha"
@@ -95,14 +86,14 @@ const x = StyleSheet.create({
   },
   marg: {
     color: "black",
-    fontSize: 13,
-    marginBottom: 5,
+    fontSize: 33,
+    marginBottom: 15,
     borderBottomColor: "#363636",
     padding: 18,
-    flexDirection: "row",
+
+    borderRadius: 20,
   },
   corbotao: {
-    flex: 0,
     backgroundColor: "#006400",
     alignItems: "center",
     justifyContent: "center",
@@ -120,19 +111,20 @@ const x = StyleSheet.create({
   },
   org: {
     backgroundColor: "transparent",
-    marginTop: 348,
+    marginTop: 328,
     height: "70%",
     right: "14%",
     width: "90%",
     marginLeft: "19%",
     marginRight: "40%",
+    padding: 20,
   },
   key: {
     flex: 1,
   },
   icone1: {
     flexDirection: "row",
-    borderWidth: 1.9,
+    borderWidth: 2.4,
   },
   localico: {
     marginTop: 20,
@@ -143,21 +135,21 @@ const x = StyleSheet.create({
     left: "86%",
   },
   esquesenh: {
-    left: "64%",
+    left: "60%",
     color: "blue",
     marginTop: 9,
     fontSize: 20,
   },
   criarcont: {
-    marginTop: 23,
-    left: "20%",
+    marginTop: 18,
+    left: "15%",
     fontSize: 24,
     alignItems: "center",
   },
   criacont: {
     left: "65%",
     color: "blue",
-    marginTop: -30,
+    marginTop: -33,
     alignItems: "center",
     fontSize: 24,
   },

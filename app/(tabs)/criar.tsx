@@ -9,13 +9,9 @@ import {
   KeyboardAvoidingView,
   Pressable,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import Zocial from "@expo/vector-icons/Zocial";
-import Entypo from "@expo/vector-icons/Entypo";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Link, router } from "expo-router";
-
+import { Ionicons } from "@expo/vector-icons";
 const image1 = {
   uri: "https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/087933cd6602ba9437e981dacc320608",
 };
@@ -32,8 +28,8 @@ export default function Criar() {
               </View>
               <View>
                 <Pressable onPress={() => router.back()}>
-                  <AntDesign
-                    name="leftcircle"
+                  <Ionicons
+                    name="arrow-back"
                     size={24}
                     color="black"
                     style={x.al}
@@ -89,7 +85,7 @@ const x = StyleSheet.create({
   ali: {
     backgroundColor: "#fcfdff",
     marginTop: -188,
-    marginLeft: "-46%",
+    marginLeft: "-56%",
     marginRight: "8%",
     fontSize: 55,
     fontWeight: "bold",
@@ -97,13 +93,16 @@ const x = StyleSheet.create({
     paddingLeft: 250,
   },
   al: {
-    marginTop: -168,
-    marginLeft: "-70%",
+    backgroundColor: "rgba(12, 12, 12, 0.55)",
+    marginTop: -175,
+    marginLeft: "-85%",
     marginRight: "8%",
-    fontSize: 45,
+    fontSize: 55,
     fontWeight: "bold",
     width: "696%",
     paddingLeft: 250,
+    borderRadius: 8,
+    alignSelf: "flex-start",
   },
   key: {
     flex: 1,

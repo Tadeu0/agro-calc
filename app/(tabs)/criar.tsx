@@ -11,12 +11,16 @@ import {
 } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Link, router } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Entypo, FontAwesome } from "@expo/vector-icons";
 const image1 = {
   uri: "https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/087933cd6602ba9437e981dacc320608",
 };
 
 export default function Criar() {
+  const [olho, setOlho] = useState("");
+  const [ver, setVer] = useState(true);
+  const [erro, setErro] = useState(null);
+
   return (
     <ImageBackground source={image1} style={x.imagefundo}>
       <KeyboardAvoidingView behavior="height" enabled>
@@ -44,8 +48,26 @@ export default function Criar() {
             <TextInput placeholder="Email" style={x.text} />
           </View>
           <View>
-            <TextInput placeholder="Senha" style={x.text} />
+            <TextInput
+              placeholder="Senha"
+              style={x.text}
+              value={olho}
+              onChangeText={(texto) => setOlho(texto)}
+              secureTextEntry={ver}
+            />
           </View>
+          <TouchableOpacity onPress={() => setVer(!ver)}>
+            {ver ? (
+              <FontAwesome name="eye" size={32} color="black" style={x.olho} />
+            ) : (
+              <Entypo
+                name="eye-with-line"
+                size={24}
+                color="black"
+                style={x.olho}
+              />
+            )}
+          </TouchableOpacity>
           <TouchableOpacity style={x.bota}>
             <Text style={x.botatext}> ACESSAR </Text>
           </TouchableOpacity>
@@ -80,6 +102,7 @@ const x = StyleSheet.create({
     borderWidth: 5,
     borderRadius: 20,
     marginBottom: -40,
+    width: "100%",
   },
 
   ali: {
@@ -93,7 +116,6 @@ const x = StyleSheet.create({
     paddingLeft: 250,
   },
   al: {
-    backgroundColor: "rgba(12, 12, 12, 0.55)",
     marginTop: -175,
     marginLeft: "-85%",
     marginRight: "8%",
@@ -113,15 +135,20 @@ const x = StyleSheet.create({
     width: "70%",
     left: "1%",
     borderRadius: 120,
-    marginTop: 80,
+    marginTop: 40,
     alignItems: "center",
     justifyContent: "center",
     marginLeft: 50,
+    elevation: 18,
   },
   botatext: {
     color: "#fff",
     fontSize: 40,
     alignItems: "center",
     justifyContent: "center",
+  },
+  olho: {
+    marginTop: -5,
+    left: "86%",
   },
 });

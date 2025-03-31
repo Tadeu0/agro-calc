@@ -49,8 +49,23 @@ export default function Index() {
                 />
               </View>
               <TouchableOpacity onPress={() => setVer(!ver)}>
-                <Entypo name="eye" size={32} color="black" style={x.olho} />
+                {ver ? (
+                  <FontAwesome
+                    name="eye"
+                    size={32}
+                    color="black"
+                    style={x.olho}
+                  />
+                ) : (
+                  <Entypo
+                    name="eye-with-line"
+                    size={24}
+                    color="black"
+                    style={x.olho}
+                  />
+                )}
               </TouchableOpacity>
+
               <TouchableOpacity>
                 <Text style={x.esquesenh}> Esqueci a senha </Text>
               </TouchableOpacity>
@@ -86,12 +101,12 @@ const x = StyleSheet.create({
   },
   marg: {
     color: "black",
-    fontSize: 33,
+    fontSize: 26,
     marginBottom: 15,
     borderBottomColor: "#363636",
-    padding: 18,
+    padding: 8,
 
-    borderRadius: 20,
+    borderRadius: 40,
   },
   corbotao: {
     backgroundColor: "#006400",
@@ -102,6 +117,7 @@ const x = StyleSheet.create({
     left: "1%",
     borderRadius: 120,
     marginTop: 20,
+    elevation: 17,
   },
   botaotext: {
     color: "#fff",
@@ -124,15 +140,18 @@ const x = StyleSheet.create({
   },
   icone1: {
     flexDirection: "row",
-    borderWidth: 2.4,
+    borderWidth: 4,
+    borderRadius: 50,
+    marginBottom: 20,
   },
   localico: {
     marginTop: 20,
     left: "87%",
   },
   olho: {
-    marginTop: -47,
+    marginTop: -67,
     left: "86%",
+    width: 30,
   },
   esquesenh: {
     left: "60%",

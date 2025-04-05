@@ -7,11 +7,15 @@ import {
   StyleSheet,
   ImageBackground,
   KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+  ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Zocial from "@expo/vector-icons/Zocial";
 import Entypo from "@expo/vector-icons/Entypo";
+
 import { Link } from "expo-router";
 
 const image1 = {
@@ -21,7 +25,17 @@ const image1 = {
 export default function Index() {
   const [olho, setOlho] = useState("");
   const [ver, setVer] = useState(true);
-  const [erro, setErro] = useState(null);
+  const [usuario, setUsuario] = useState("");
+  const [senha, setSenha] = useState("");
+  const [login, setLogin] = useState(false);
+
+  function verificador() {
+    const sav = {
+      usuario,
+      senha,
+    };
+    console.log(sav);
+  }
 
   return (
     <ImageBackground source={image1} style={x.imagefundo}>
@@ -36,30 +50,36 @@ export default function Index() {
                   color="#363636"
                   style={x.localico}
                 />
-                <TextInput placeholder="Usuário" style={x.marg} />
+
+                <TextInput
+                  placeholder="Usuário"
+                  style={x.marg}
+                  value={usuario}
+                  onChangeText={setUsuario}
+                />
               </View>
 
               <View style={x.icone1}>
                 <TextInput
                   placeholder="Senha"
                   style={x.marg}
-                  value={olho}
-                  onChangeText={(texto) => setOlho(texto)}
+                  value={senha}
+                  onChangeText={setSenha}
                   secureTextEntry={ver}
                 />
               </View>
               <TouchableOpacity onPress={() => setVer(!ver)}>
                 {ver ? (
                   <FontAwesome
-                    name="eye"
+                    name="eye-slash"
                     size={32}
                     color="black"
                     style={x.olho}
                   />
                 ) : (
-                  <Entypo
-                    name="eye-with-line"
-                    size={24}
+                  <FontAwesome
+                    name="eye"
+                    size={32}
                     color="black"
                     style={x.olho}
                   />
@@ -69,8 +89,16 @@ export default function Index() {
               <TouchableOpacity>
                 <Text style={x.esquesenh}> Esqueci a senha </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={x.corbotao}>
-                <Text style={x.botaotext}> ACESSAR </Text>
+              <TouchableOpacity
+                style={x.corbotao}
+                onPress={() => setLogin(true)}
+                activeOpacity={0.3}
+              >
+                {login ? (
+                  <ActivityIndicator size="large" color="#fff" />
+                ) : (
+                  <Text style={x.botaotext}> ACESSAR </Text>
+                )}
               </TouchableOpacity>
               <Text style={x.criarcont}> Não tem conta?</Text>
               <TouchableOpacity>
@@ -85,7 +113,6 @@ export default function Index() {
     </ImageBackground>
   );
 }
-
 const x = StyleSheet.create({
   imagefundo: {
     flex: 1,

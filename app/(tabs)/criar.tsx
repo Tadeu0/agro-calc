@@ -20,6 +20,20 @@ export default function Criar() {
   const [olho, setOlho] = useState("");
   const [ver, setVer] = useState(true);
   const [erro, setErro] = useState(null);
+  const [usuario, setUsuario] = useState("");
+  const [senha, setSenha] = useState("");
+  const [email, setEmail] = useState("");
+  const [nome, setNome] = useState("");
+
+  function verificador() {
+    const sav = {
+      usuario,
+      email,
+      nome,
+      senha,
+    };
+    console.log(sav);
+  }
 
   return (
     <ImageBackground source={image1} style={x.imagefundo}>
@@ -40,35 +54,51 @@ export default function Criar() {
                   />
                 </Pressable>
               </View>
-              <TextInput placeholder="Usuário" style={x.text} />
+
+              <TextInput
+                placeholder="Usuário"
+                style={x.text}
+                value={usuario}
+                onChangeText={setUsuario}
+              />
             </View>
-            <TextInput placeholder="Nome Completo" style={x.text} />
+            <TextInput
+              placeholder="Nome Completo"
+              style={x.text}
+              value={nome}
+              onChangeText={setNome}
+            />
           </View>
           <View>
-            <TextInput placeholder="Email" style={x.text} />
+            <TextInput
+              placeholder="Email"
+              style={x.text}
+              value={email}
+              onChangeText={setEmail}
+            />
           </View>
           <View>
             <TextInput
               placeholder="Senha"
               style={x.text}
-              value={olho}
-              onChangeText={(texto) => setOlho(texto)}
+              value={senha}
+              onChangeText={setSenha}
               secureTextEntry={ver}
             />
           </View>
           <TouchableOpacity onPress={() => setVer(!ver)}>
             {ver ? (
-              <FontAwesome name="eye" size={32} color="black" style={x.olho} />
-            ) : (
-              <Entypo
-                name="eye-with-line"
-                size={24}
+              <FontAwesome
+                name="eye-slash"
+                size={32}
                 color="black"
                 style={x.olho}
               />
+            ) : (
+              <FontAwesome name="eye" size={32} color="black" style={x.olho} />
             )}
           </TouchableOpacity>
-          <TouchableOpacity style={x.bota}>
+          <TouchableOpacity style={x.bota} onPress={verificador}>
             <Text style={x.botatext}> ACESSAR </Text>
           </TouchableOpacity>
         </View>
@@ -86,7 +116,7 @@ const x = StyleSheet.create({
   },
   criar: {
     backgroundColor: "#fcfdff",
-    marginTop: "50%",
+    marginTop: "46%",
     height: "70%",
     right: "14%",
     width: "90%",
@@ -97,11 +127,11 @@ const x = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-    marginTop: 62,
+    marginTop: 36,
     marginLeft: 10,
     borderWidth: 5,
     borderRadius: 20,
-    marginBottom: -40,
+    marginBottom: -26,
     width: "100%",
   },
 
@@ -135,7 +165,7 @@ const x = StyleSheet.create({
     width: "70%",
     left: "1%",
     borderRadius: 120,
-    marginTop: 40,
+    marginTop: 50,
     alignItems: "center",
     justifyContent: "center",
     marginLeft: 50,
@@ -148,7 +178,7 @@ const x = StyleSheet.create({
     justifyContent: "center",
   },
   olho: {
-    marginTop: -5,
-    left: "86%",
+    marginTop: -20,
+    left: "88%",
   },
 });

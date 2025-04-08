@@ -91,7 +91,7 @@ export default function Index() {
               </TouchableOpacity>
               <TouchableOpacity
                 style={x.corbotao}
-                onPress={() => setLogin(true)}
+                onPress={verificador}
                 activeOpacity={0.3}
               >
                 {login ? (

@@ -12,6 +12,8 @@ import {
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Link, router } from "expo-router";
 import { Ionicons, Entypo, FontAwesome } from "@expo/vector-icons";
+import Feather from "@expo/vector-icons/Feather";
+import Zocial from "@expo/vector-icons/Zocial";
 const image1 = {
   uri: "https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/087933cd6602ba9437e981dacc320608",
 };
@@ -61,6 +63,12 @@ export default function Criar() {
                 value={usuario}
                 onChangeText={setUsuario}
               />
+              <FontAwesome
+                name="user-o"
+                size={32}
+                color="black"
+                style={x.user}
+              />
             </View>
             <TextInput
               placeholder="Nome Completo"
@@ -68,6 +76,7 @@ export default function Criar() {
               value={nome}
               onChangeText={setNome}
             />
+            <Feather name="user" size={32} color="black" style={x.user} />
           </View>
           <View>
             <TextInput
@@ -76,6 +85,7 @@ export default function Criar() {
               value={email}
               onChangeText={setEmail}
             />
+            <Zocial name="gmail" size={32} color="black" style={x.user} />
           </View>
           <View>
             <TextInput
@@ -99,7 +109,9 @@ export default function Criar() {
             )}
           </TouchableOpacity>
           <TouchableOpacity style={x.bota} onPress={verificador}>
-            <Text style={x.botatext}> ACESSAR </Text>
+            <Link href="/inicio" style={x.botatext}>
+              ACESSAR
+            </Link>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
@@ -116,8 +128,8 @@ const x = StyleSheet.create({
   },
   criar: {
     backgroundColor: "#fcfdff",
-    marginTop: "46%",
-    height: "70%",
+    marginTop: "56%",
+    height: "66%",
     right: "14%",
     width: "90%",
     marginLeft: "19%",
@@ -136,8 +148,8 @@ const x = StyleSheet.create({
   },
 
   ali: {
-    backgroundColor: "#fcfdff",
-    marginTop: -188,
+    backgroundColor: "green",
+    marginTop: -198,
     marginLeft: "-56%",
     marginRight: "8%",
     fontSize: 55,
@@ -146,7 +158,7 @@ const x = StyleSheet.create({
     paddingLeft: 250,
   },
   al: {
-    marginTop: -175,
+    marginTop: -188,
     marginLeft: "-85%",
     marginRight: "8%",
     fontSize: 55,
@@ -155,9 +167,6 @@ const x = StyleSheet.create({
     paddingLeft: 250,
     borderRadius: 8,
     alignSelf: "flex-start",
-  },
-  key: {
-    flex: 1,
   },
   bota: {
     backgroundColor: "#006400",
@@ -178,6 +187,10 @@ const x = StyleSheet.create({
     justifyContent: "center",
   },
   olho: {
+    marginTop: -20,
+    left: "89%",
+  },
+  user: {
     marginTop: -20,
     left: "88%",
   },

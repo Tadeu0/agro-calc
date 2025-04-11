@@ -67,15 +67,12 @@ export default function Criar() {
                 />
                 <FontAwesome name="user-o" size={22} style={styles.icon} />
                 {errors.usuario && (
-                  <Text style={styles.errorText}>
-                    {errors.usuario.message}
-                  </Text>
+                  <Text style={styles.errorText}>{errors.usuario.message}</Text>
                 )}
               </View>
             )}
           />
 
-          {/* Nome */}
           <Controller
             control={control}
             name="nome"
@@ -90,15 +87,12 @@ export default function Criar() {
                 />
                 <Feather name="user" size={22} style={styles.icon} />
                 {errors.nome && (
-                  <Text style={styles.errorText}>
-                    {errors.nome.message}
-                  </Text>
+                  <Text style={styles.errorText}>{errors.nome.message}</Text>
                 )}
               </View>
             )}
           />
 
-          {/* Email */}
           <Controller
             control={control}
             name="email"
@@ -121,15 +115,12 @@ export default function Criar() {
                 />
                 <Zocial name="gmail" size={22} style={styles.icon} />
                 {errors.email && (
-                  <Text style={styles.errorText}>
-                    {errors.email.message}
-                  </Text>
+                  <Text style={styles.errorText}>{errors.email.message}</Text>
                 )}
               </View>
             )}
           />
 
-          {/* Senha */}
           <Controller
             control={control}
             name="senha"
@@ -147,21 +138,19 @@ export default function Criar() {
                   onPress={() => setVer(!ver)}
                   style={styles.icon}
                 >
-                  <FontAwesome
-                    name={ver ? "eye-slash" : "eye"}
-                    size={22}
-                  />
+                  <FontAwesome name={ver ? "eye-slash" : "eye"} size={22} />
                 </TouchableOpacity>
                 {errors.senha && (
-                  <Text style={styles.errorText}>
-                    {errors.senha.message}
-                  </Text>
+                  <Text style={styles.errorText}>{errors.senha.message}</Text>
                 )}
               </View>
             )}
           />
 
-          <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleSubmit(onSubmit)}
+          >
             <Text style={styles.buttonText}>CRIAR CONTA</Text>
           </TouchableOpacity>
         </View>
@@ -178,7 +167,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
-   estrutura: {
+  estrutura: {
     backgroundColor: "#fff",
     margin: 20,
     padding: 20,
@@ -195,7 +184,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "center",
   },
-   espaco: {
+  espaco: {
     marginBottom: 26,
   },
   input: {
@@ -221,7 +210,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontSize: 13,
   },
-  button  : {
+  button: {
     backgroundColor: "#006400",
     padding: 16,
     borderRadius: 30,

@@ -37,7 +37,7 @@ export default function Criar() {
 
   const onSubmit = (data: any) => {
     console.log("Dados:", data);
-    router.push("/(tabs)/index");
+    router.push("/inicio");
   };
 
   return (
@@ -55,7 +55,14 @@ export default function Criar() {
           <Controller
             control={control}
             name="usuario"
-            rules={{ required: "Usuário é obrigatório" }}
+            rules={{
+              required: "Usuário é obrigatório",
+              pattern: {
+                value: /^(?=.*[A-Z])(?=.*[\d\W]).{6,}$/,
+                message:
+                  "Usuário deve ter pelo menos 6 caracteres, uma letra maiúscula e um número ou símbolo",
+              },
+            }}
             render={({ field: { onChange, value } }) => (
               <View style={styles.espaco}>
                 <TextInput
@@ -63,6 +70,7 @@ export default function Criar() {
                   style={[styles.input, errors.usuario && styles.inputError]}
                   value={value}
                   onChangeText={onChange}
+                  autoCapitalize="none"
                 />
                 <FontAwesome name="user-o" size={22} style={styles.icon} />
                 {errors.usuario && (
@@ -123,7 +131,13 @@ export default function Criar() {
           <Controller
             control={control}
             name="senha"
-            rules={{ required: "Senha é obrigatória" }}
+            rules={{
+              required: "Senha é obrigatória",
+              minLength: {
+                value: 6,
+                message: "Senha deve ter pelo menos 6 caracteres",
+              },
+            }}
             render={({ field: { onChange, value } }) => (
               <View style={styles.espaco}>
                 <TextInput
@@ -132,6 +146,7 @@ export default function Criar() {
                   value={value}
                   onChangeText={onChange}
                   secureTextEntry={ver}
+                  autoCapitalize="none"
                 />
                 <TouchableOpacity
                   onPress={() => setVer(!ver)}

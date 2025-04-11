@@ -15,6 +15,8 @@ import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Zocial from "@expo/vector-icons/Zocial";
 import Entypo from "@expo/vector-icons/Entypo";
+import { useForm, Controller } from "react-hook-form";
+import { router } from "expo-router";
 
 import { Link } from "expo-router";
 
@@ -23,19 +25,22 @@ const image1 = {
 };
 
 export default function Index() {
-  const [olho, setOlho] = useState("");
   const [ver, setVer] = useState(true);
-  const [usuario, setUsuario] = useState("");
-  const [senha, setSenha] = useState("");
-  const [login, setLogin] = useState(false);
 
-  function verificador() {
-    const sav = {
-      usuario,
-      senha,
-    };
-    console.log(sav);
-  }
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      usuario: "",
+      senha: "",
+    },
+  });
+
+  const onSubmit = (data: any) => {
+    console.log("Dados:", data);
+  };
 
   return (
     <ImageBackground source={image1} style={x.fundo}>
@@ -49,21 +54,53 @@ export default function Index() {
                 color="#363636"
                 style={x.localico}
               />
-              <TextInput
-                placeholder="Usuário"
-                style={x.marg}
-                value={usuario}
-                onChangeText={setUsuario}
+              <Controller
+                control={control}
+                name="usuario"
+                rules={{
+                  required: "Campo  obrigatório",
+                  pattern: {
+                    value: /^(?=.*[A-Z])(?=.*[\d\W]).{6,}$/,
+                    message:
+                      "usuario deve ter pelo menos uma letra maiúscula e pelo menos 6 caracteristicas com simbolos",
+                  },
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <TextInput
+                    placeholder="Usuário"
+                    style={x.marg}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                  />
+                )}
               />
             </View>
+            {errors.usuario && (
+              <Text style={x.erro}>{errors.usuario.message}</Text>
+            )}
 
             <View style={x.icone1}>
-              <TextInput
-                placeholder="Senha"
-                style={x.marg}
-                value={senha}
-                onChangeText={setSenha}
-                secureTextEntry={ver}
+              <Controller
+                control={control}
+                name="senha"
+                rules={{
+                  required: "Senha é obrigatória",
+                  minLength: {
+                    value: 6,
+                    message: "Senha deve ter pelo menos 6 caracteres",
+                  },
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <TextInput
+                    placeholder="Senha"
+                    style={x.marg}
+                    onBlur={onBlur}
+                    onChangeText={onChange}
+                    value={value}
+                    secureTextEntry={ver}
+                  />
+                )}
               />
               <TouchableOpacity onPress={() => setVer(!ver)}>
                 <FontAwesome
@@ -74,6 +111,7 @@ export default function Index() {
                 />
               </TouchableOpacity>
             </View>
+            {errors.senha && <Text style={x.erro}>{errors.senha.message}</Text>}
 
             <TouchableOpacity>
               <Text style={x.esquesenh}>Esqueci a senha</Text>
@@ -81,14 +119,10 @@ export default function Index() {
 
             <TouchableOpacity
               style={x.corbotao}
-              onPress={verificador}
+              onPress={handleSubmit(onSubmit)}
               activeOpacity={0.8}
             >
-              {login ? (
-                <ActivityIndicator size="small" color="#fff" />
-              ) : (
-                <Text style={x.botaotext}>ACESSAR</Text>
-              )}
+              <Text style={x.botaotext}>ACESSAR</Text>
             </TouchableOpacity>
 
             <Text style={x.criarcont}>Não tem conta?</Text>
@@ -120,12 +154,12 @@ const x = StyleSheet.create({
     justifyContent: "center",
   },
   org: {
-    backgroundColor: "#fff",
+    backgroundColor: "#DCDCDC",
     padding: 20,
     borderRadius: 15,
     elevation: 5,
     marginTop: 300,
-    height: -270,
+    height: -130,
   },
   icone1: {
     flexDirection: "row",
@@ -180,5 +214,13 @@ const x = StyleSheet.create({
     fontSize: 16,
     marginTop: -20,
     left: 55,
+  },
+  erro: {
+    color: "#B22222",
+    fontSize: 14,
+    marginTop: 20,
+    marginBottom: -10,
+    marginLeft: 5,
+    fontStyle: "italic",
   },
 });

@@ -38,165 +38,147 @@ export default function Index() {
   }
 
   return (
-    <ImageBackground source={image1} style={x.imagefundo}>
+    <ImageBackground source={image1} style={x.fundo}>
       <View style={x.coles}>
-        <KeyboardAvoidingView behavior="padding" style={x.key}>
-          <View>
-            <View style={x.org}>
-              <View style={x.icone1}>
-                <FontAwesome
-                  name="user"
-                  size={28}
-                  color="#363636"
-                  style={x.localico}
-                />
+        <KeyboardAvoidingView style={x.key}>
+          <View style={x.org}>
+            <View style={x.icone1}>
+              <FontAwesome
+                name="user"
+                size={28}
+                color="#363636"
+                style={x.localico}
+              />
+              <TextInput
+                placeholder="Usuário"
+                style={x.marg}
+                value={usuario}
+                onChangeText={setUsuario}
+              />
+            </View>
 
-                <TextInput
-                  placeholder="Usuário"
-                  style={x.marg}
-                  value={usuario}
-                  onChangeText={setUsuario}
-                />
-              </View>
-
-              <View style={x.icone1}>
-                <TextInput
-                  placeholder="Senha"
-                  style={x.marg}
-                  value={senha}
-                  onChangeText={setSenha}
-                  secureTextEntry={ver}
-                />
-              </View>
+            <View style={x.icone1}>
+              <TextInput
+                placeholder="Senha"
+                style={x.marg}
+                value={senha}
+                onChangeText={setSenha}
+                secureTextEntry={ver}
+              />
               <TouchableOpacity onPress={() => setVer(!ver)}>
-                {ver ? (
-                  <FontAwesome
-                    name="eye-slash"
-                    size={32}
-                    color="black"
-                    style={x.olho}
-                  />
-                ) : (
-                  <FontAwesome
-                    name="eye"
-                    size={32}
-                    color="black"
-                    style={x.olho}
-                  />
-                )}
-              </TouchableOpacity>
-
-              <TouchableOpacity>
-                <Text style={x.esquesenh}> Esqueci a senha </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={x.corbotao}
-                onPress={verificador}
-                activeOpacity={0.3}
-              >
-                {login ? (
-                  <ActivityIndicator size="large" color="#fff" />
-                ) : (
-                  <Text style={x.botaotext}> ACESSAR </Text>
-                )}
-              </TouchableOpacity>
-              <Text style={x.criarcont}> Não tem conta?</Text>
-              <TouchableOpacity>
-                <Link href="/criar" style={x.criacont}>
-                  Criar conta
-                </Link>
+                <FontAwesome
+                  name={ver ? "eye-slash" : "eye"}
+                  size={28}
+                  color="black"
+                  style={x.olho}
+                />
               </TouchableOpacity>
             </View>
+
+            <TouchableOpacity>
+              <Text style={x.esquesenh}>Esqueci a senha</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={x.corbotao}
+              onPress={verificador}
+              activeOpacity={0.8}
+            >
+              {login ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                <Text style={x.botaotext}>ACESSAR</Text>
+              )}
+            </TouchableOpacity>
+
+            <Text style={x.criarcont}>Não tem conta?</Text>
+            <TouchableOpacity>
+              <Link href="/criar" style={x.criacont}>
+                Criar conta
+              </Link>
+            </TouchableOpacity>
           </View>
         </KeyboardAvoidingView>
       </View>
     </ImageBackground>
   );
 }
+
 const x = StyleSheet.create({
-  imagefundo: {
+  fundo: {
     flex: 1,
     resizeMode: "cover",
-    width: "100%",
-    marginTop: "1%",
   },
   coles: {
     flex: 1,
-    backgroundColor: "transparent",
-    alignItems: "center",
     justifyContent: "center",
-  },
-  marg: {
-    color: "black",
-    fontSize: 26,
-    marginBottom: 15,
-    borderBottomColor: "#363636",
-    padding: 8,
-
-    borderRadius: 40,
-  },
-  corbotao: {
-    backgroundColor: "#006400",
-    alignItems: "center",
-    justifyContent: "center",
-    height: "8%",
-    width: "100%",
-    left: "1%",
-    borderRadius: 120,
-    marginTop: 20,
-    elevation: 17,
-  },
-  botaotext: {
-    color: "#fff",
-    fontSize: 20,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  org: {
-    backgroundColor: "transparent",
-    marginTop: 328,
-    height: "70%",
-    right: "14%",
-    width: "90%",
-    marginLeft: "19%",
-    marginRight: "40%",
-    padding: 20,
+    paddingHorizontal: 25,
+    backgroundColor: "rgba(255,255,255,0.2)",
   },
   key: {
     flex: 1,
+    justifyContent: "center",
+  },
+  org: {
+    backgroundColor: "#fff",
+    padding: 20,
+    borderRadius: 15,
+    elevation: 5,
+    marginTop: 300,
+    height: -270,
   },
   icone1: {
     flexDirection: "row",
-    borderWidth: 4,
-    borderRadius: 50,
-    marginBottom: 20,
+    alignItems: "center",
+    marginBottom: -25,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    marginTop: 60,
   },
   localico: {
-    marginTop: 20,
-    left: "87%",
+    marginRight: 10,
+  },
+  marg: {
+    flex: 1,
+    height: 50,
+    fontSize: 16,
   },
   olho: {
-    marginTop: -67,
-    left: "86%",
-    width: 30,
+    marginLeft: 10,
   },
   esquesenh: {
-    left: "60%",
+    textAlign: "right",
     color: "blue",
-    marginTop: 9,
-    fontSize: 20,
+    marginBottom: 35,
+    marginTop: 40,
+  },
+  corbotao: {
+    backgroundColor: "#006400",
+    paddingVertical: 12,
+    borderRadius: 25,
+    alignItems: "center",
+    marginBottom: 5,
+  },
+  botaotext: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
   },
   criarcont: {
-    marginTop: 18,
-    left: "15%",
-    fontSize: 24,
-    alignItems: "center",
+    textAlign: "center",
+    color: "#444",
+    marginTop: 10,
+    right: 45,
+    fontSize: 16,
   },
   criacont: {
-    left: "65%",
+    textAlign: "center",
     color: "blue",
-    marginTop: -33,
-    alignItems: "center",
-    fontSize: 24,
+    fontWeight: "bold",
+    fontSize: 16,
+    marginTop: -20,
+    left: 55,
   },
 });

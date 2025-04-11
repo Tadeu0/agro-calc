@@ -154,12 +154,12 @@ const x = StyleSheet.create({
     justifyContent: "center",
   },
   org: {
-    backgroundColor: "#DCDCDC",
-    padding: 20,
+    backgroundColor: "#fff",
+    padding: 25,
     borderRadius: 15,
-    elevation: 5,
-    marginTop: 300,
-    height: -130,
+    elevation: 10,
+    marginTop: 360,
+    height: -80,
   },
   icone1: {
     flexDirection: "row",
@@ -186,7 +186,7 @@ const x = StyleSheet.create({
     textAlign: "right",
     color: "blue",
     marginBottom: 35,
-    marginTop: 40,
+    marginTop: 50,
   },
   corbotao: {
     backgroundColor: "#006400",
@@ -212,8 +212,8 @@ const x = StyleSheet.create({
     color: "blue",
     fontWeight: "bold",
     fontSize: 16,
-    marginTop: -20,
-    left: 55,
+    marginTop: -23,
+    left: 75,
   },
   erro: {
     color: "#B22222",

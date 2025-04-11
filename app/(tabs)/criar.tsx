@@ -41,16 +41,16 @@ export default function Criar() {
   };
 
   return (
-    <ImageBackground source={image1} style={styles.fundo}>
+    <ImageBackground source={image1} style={x.fundo}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.criar}
+        style={x.criar}
       >
-        <View style={styles.estrutura}>
-          <Pressable onPress={() => router.back()} style={styles.backButton}>
+        <View style={x.estrutura}>
+          <Pressable onPress={() => router.back()} style={x.backButton}>
             <Ionicons name="arrow-back" size={28} color="black" />
           </Pressable>
-          <Text style={styles.titulo}>Criar Conta</Text>
+          <Text style={x.titulo}>Criar Conta</Text>
 
           <Controller
             control={control}
@@ -64,17 +64,17 @@ export default function Criar() {
               },
             }}
             render={({ field: { onChange, value } }) => (
-              <View style={styles.espaco}>
+              <View style={x.espaco}>
                 <TextInput
                   placeholder="Usuário"
-                  style={[styles.input, errors.usuario && styles.inputError]}
+                  style={[x.input, errors.usuario && x.inputError]}
                   value={value}
                   onChangeText={onChange}
                   autoCapitalize="none"
                 />
-                <FontAwesome name="user-o" size={22} style={styles.icon} />
+                <FontAwesome name="user-o" size={22} style={x.icon} />
                 {errors.usuario && (
-                  <Text style={styles.errorText}>{errors.usuario.message}</Text>
+                  <Text style={x.errorText}>{errors.usuario.message}</Text>
                 )}
               </View>
             )}
@@ -85,16 +85,16 @@ export default function Criar() {
             name="nome"
             rules={{ required: "Nome é obrigatório" }}
             render={({ field: { onChange, value } }) => (
-              <View style={styles.espaco}>
+              <View style={x.espaco}>
                 <TextInput
                   placeholder="Nome Completo"
-                  style={[styles.input, errors.nome && styles.inputError]}
+                  style={[x.input, errors.nome && x.inputError]}
                   value={value}
                   onChangeText={onChange}
                 />
-                <Feather name="user" size={22} style={styles.icon} />
+                <Feather name="user" size={22} style={x.icon} />
                 {errors.nome && (
-                  <Text style={styles.errorText}>{errors.nome.message}</Text>
+                  <Text style={x.errorText}>{errors.nome.message}</Text>
                 )}
               </View>
             )}
@@ -111,18 +111,18 @@ export default function Criar() {
               },
             }}
             render={({ field: { onChange, value } }) => (
-              <View style={styles.espaco}>
+              <View style={x.espaco}>
                 <TextInput
                   placeholder="Email"
-                  style={[styles.input, errors.email && styles.inputError]}
+                  style={[x.input, errors.email && x.inputError]}
                   value={value}
                   onChangeText={onChange}
                   keyboardType="email-address"
                   autoCapitalize="none"
                 />
-                <Zocial name="gmail" size={22} style={styles.icon} />
+                <Zocial name="gmail" size={22} style={x.icon} />
                 {errors.email && (
-                  <Text style={styles.errorText}>{errors.email.message}</Text>
+                  <Text style={x.errorText}>{errors.email.message}</Text>
                 )}
               </View>
             )}
@@ -139,33 +139,27 @@ export default function Criar() {
               },
             }}
             render={({ field: { onChange, value } }) => (
-              <View style={styles.espaco}>
+              <View style={x.espaco}>
                 <TextInput
                   placeholder="Senha"
-                  style={[styles.input, errors.senha && styles.inputError]}
+                  style={[x.input, errors.senha && x.inputError]}
                   value={value}
                   onChangeText={onChange}
                   secureTextEntry={ver}
                   autoCapitalize="none"
                 />
-                <TouchableOpacity
-                  onPress={() => setVer(!ver)}
-                  style={styles.icon}
-                >
+                <TouchableOpacity onPress={() => setVer(!ver)} style={x.icon}>
                   <FontAwesome name={ver ? "eye-slash" : "eye"} size={22} />
                 </TouchableOpacity>
                 {errors.senha && (
-                  <Text style={styles.errorText}>{errors.senha.message}</Text>
+                  <Text style={x.errorText}>{errors.senha.message}</Text>
                 )}
               </View>
             )}
           />
 
-          <TouchableOpacity
-            style={styles.button}
-            onPress={handleSubmit(onSubmit)}
-          >
-            <Text style={styles.buttonText}>CRIAR CONTA</Text>
+          <TouchableOpacity style={x.button} onPress={handleSubmit(onSubmit)}>
+            <Text style={x.buttonText}>CRIAR CONTA</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
@@ -173,7 +167,7 @@ export default function Criar() {
   );
 }
 
-const styles = StyleSheet.create({
+const x = StyleSheet.create({
   fundo: {
     flex: 1,
   },

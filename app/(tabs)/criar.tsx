@@ -8,13 +8,12 @@ import {
   ImageBackground,
   KeyboardAvoidingView,
   Pressable,
+  Platform,
 } from "react-native";
-import AntDesign from "@expo/vector-icons/AntDesign";
-import { Link, router } from "expo-router";
-import { Ionicons, FontAwesome } from "@expo/vector-icons";
-import Feather from "@expo/vector-icons/Feather";
+import { Ionicons, FontAwesome, Feather } from "@expo/vector-icons";
 import Zocial from "@expo/vector-icons/Zocial";
 import { useForm, Controller } from "react-hook-form";
+import { router } from "expo-router";
 
 const image1 = {
   uri: "https://snack-code-uploads.s3.us-west-1.amazonaws.com/~asset/087933cd6602ba9437e981dacc320608",
@@ -22,151 +21,148 @@ const image1 = {
 
 export default function Criar() {
   const [ver, setVer] = useState(true);
+
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      usuario: "",
+      nome: "",
+      email: "",
+      senha: "",
+    },
+  });
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    console.log("Dados:", data);
     router.push("/inicio");
   };
 
   return (
-    <ImageBackground source={image1} style={x.imagefundo}>
-      <KeyboardAvoidingView behavior="height" enabled>
-        <View style={x.criar}>
-          <Text style={x.ali}>Criar Conta</Text>
-          <TouchableOpacity>
-            <Pressable onPress={() => router.back()}>
-              <Ionicons
-                name="arrow-back"
-                size={32}
-                color="black"
-                style={x.al}
-              />
-            </Pressable>
-          </TouchableOpacity>
+    <ImageBackground source={image1} style={styles.fundo}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.criar}
+      >
+        <View style={styles.estrutura}>
+          <Pressable onPress={() => router.back()} style={styles.backButton}>
+            <Ionicons name="arrow-back" size={28} color="black" />
+          </Pressable>
+          <Text style={styles.titulo}>Criar Conta</Text>
 
+          {/* Usuário */}
           <Controller
             control={control}
-            rules={{ required: "Campo obrigatório" }}
+            name="usuario"
+            rules={{ required: "Usuário é obrigatório" }}
             render={({ field: { onChange, value } }) => (
-              <View>
+              <View style={styles.espaco}>
                 <TextInput
                   placeholder="Usuário"
-                  style={x.text}
+                  style={[styles.input, errors.usuario && styles.inputError]}
                   value={value}
                   onChangeText={onChange}
                 />
-                <FontAwesome
-                  name="user-o"
-                  size={32}
-                  color="black"
-                  style={x.user}
-                />
+                <FontAwesome name="user-o" size={22} style={styles.icon} />
                 {errors.usuario && (
-                  <Text style={x.errorText}>
-                    {errors.usuario.message?.toString()}
+                  <Text style={styles.errorText}>
+                    {errors.usuario.message}
                   </Text>
                 )}
               </View>
             )}
-            name="usuario"
           />
 
+          {/* Nome */}
           <Controller
             control={control}
-            rules={{ required: "Campo obrigatório" }}
+            name="nome"
+            rules={{ required: "Nome é obrigatório" }}
             render={({ field: { onChange, value } }) => (
-              <View>
+              <View style={styles.espaco}>
                 <TextInput
                   placeholder="Nome Completo"
-                  style={x.text}
+                  style={[styles.input, errors.nome && styles.inputError]}
                   value={value}
                   onChangeText={onChange}
                 />
-                <Feather name="user" size={32} color="black" style={x.user} />
+                <Feather name="user" size={22} style={styles.icon} />
                 {errors.nome && (
-                  <Text style={x.errorText}>
-                    {errors.nome.message?.toString()}
+                  <Text style={styles.errorText}>
+                    {errors.nome.message}
                   </Text>
                 )}
               </View>
             )}
-            name="nome"
           />
 
+          {/* Email */}
           <Controller
             control={control}
+            name="email"
             rules={{
-              required: " Email obrigatório",
+              required: "Email obrigatório",
               pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                 message: "Email inválido",
               },
             }}
             render={({ field: { onChange, value } }) => (
-              <View>
+              <View style={styles.espaco}>
                 <TextInput
                   placeholder="Email"
-                  style={x.text}
+                  style={[styles.input, errors.email && styles.inputError]}
                   value={value}
                   onChangeText={onChange}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
                 />
-                <Zocial name="gmail" size={32} color="black" style={x.user} />
+                <Zocial name="gmail" size={22} style={styles.icon} />
                 {errors.email && (
-                  <Text style={x.errorText}>
-                    {errors.email.message?.toString()}
+                  <Text style={styles.errorText}>
+                    {errors.email.message}
                   </Text>
                 )}
               </View>
             )}
-            name="email"
           />
 
+          {/* Senha */}
           <Controller
             control={control}
-            rules={{ required: "Campo Senha é obrigatório" }}
+            name="senha"
+            rules={{ required: "Senha é obrigatória" }}
             render={({ field: { onChange, value } }) => (
-              <View>
+              <View style={styles.espaco}>
                 <TextInput
                   placeholder="Senha"
-                  style={x.text}
+                  style={[styles.input, errors.senha && styles.inputError]}
                   value={value}
                   onChangeText={onChange}
                   secureTextEntry={ver}
                 />
-                <TouchableOpacity onPress={() => setVer(!ver)}>
-                  {ver ? (
-                    <FontAwesome
-                      name="eye-slash"
-                      size={32}
-                      color="black"
-                      style={x.olho}
-                    />
-                  ) : (
-                    <FontAwesome
-                      name="eye"
-                      size={32}
-                      color="black"
-                      style={x.olho}
-                    />
-                  )}
+                <TouchableOpacity
+                  onPress={() => setVer(!ver)}
+                  style={styles.icon}
+                >
+                  <FontAwesome
+                    name={ver ? "eye-slash" : "eye"}
+                    size={22}
+                  />
                 </TouchableOpacity>
                 {errors.senha && (
-                  <Text style={x.errorText}>
-                    {errors.senha.message?.toString()}
+                  <Text style={styles.errorText}>
+                    {errors.senha.message}
                   </Text>
                 )}
               </View>
             )}
-            name="senha"
           />
 
-          <TouchableOpacity style={x.bota} onPress={handleSubmit(onSubmit)}>
-            <Text style={x.botatext}>ACESSAR</Text>
+          <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
+            <Text style={styles.buttonText}>CRIAR CONTA</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
@@ -174,85 +170,67 @@ export default function Criar() {
   );
 }
 
-const x = StyleSheet.create({
-  imagefundo: {
+const styles = StyleSheet.create({
+  fundo: {
     flex: 1,
-    resizeMode: "cover",
-    width: "100%",
-    marginTop: "-5%",
   },
   criar: {
-    backgroundColor: "#fcfdff",
-    marginTop: "56%",
-    height: "66%",
-    right: "14%",
-    width: "90%",
-    marginLeft: "19%",
-    marginRight: "40%",
-    borderRadius: 30,
+    flex: 1,
+    justifyContent: "center",
+  },
+   estrutura: {
+    backgroundColor: "#fff",
+    margin: 20,
     padding: 20,
-  },
-  text: {
-    fontSize: 24,
-    marginTop: 124,
-    marginLeft: 10,
-    borderWidth: 5,
     borderRadius: 20,
-    marginBottom: -96,
-    width: "100%",
+    elevation: 10,
   },
-  ali: {
-    backgroundColor: "green",
-    marginTop: -198,
-    marginLeft: "-56%",
-    marginRight: "8%",
-    fontSize: 55,
-    fontWeight: "bold",
-    width: "696%",
-    paddingLeft: 250,
-  },
-  al: {
-    marginTop: -68,
-    marginLeft: "-85%",
-    marginRight: "8%",
-    fontSize: 55,
-    fontWeight: "bold",
-    width: "696%",
-    paddingLeft: 250,
-    borderRadius: 8,
+  backButton: {
     alignSelf: "flex-start",
+    marginBottom: 10,
   },
-  bota: {
-    backgroundColor: "#006400",
-    height: "14%",
-    width: "70%",
-    left: "1%",
-    borderRadius: 120,
-    marginTop: 130,
-    alignItems: "center",
-    justifyContent: "center",
-    marginLeft: 50,
-    elevation: 18,
+  titulo: {
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: 20,
+    textAlign: "center",
   },
-  botatext: {
-    color: "#fff",
-    fontSize: 40,
-    alignItems: "center",
-    justifyContent: "center",
+   espaco: {
+    marginBottom: 26,
   },
-  olho: {
-    marginTop: -20,
-    left: "89%",
+  input: {
+    height: 50,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 12,
+    paddingHorizontal: 15,
+    paddingRight: 45,
+    fontSize: 16,
+    backgroundColor: "#f9f9f9",
   },
-  user: {
-    marginTop: -10,
-    left: "88%",
+  inputError: {
+    borderColor: "red",
+  },
+  icon: {
+    position: "absolute",
+    right: 15,
+    top: 14,
   },
   errorText: {
-    color: "#ff375b",
-    fontSize: 17,
+    color: "red",
+    marginTop: 5,
+    fontSize: 13,
+  },
+  button  : {
+    backgroundColor: "#006400",
+    padding: 16,
+    borderRadius: 30,
+    alignItems: "center",
+    marginTop: 10,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
     fontWeight: "bold",
-    alignSelf: "flex-start",
-    marginTop: 8,
   },
 });

@@ -37,7 +37,7 @@ export default function Criar() {
 
   const onSubmit = (data: any) => {
     console.log("Dados:", data);
-    router.push("/inicio");
+    router.push("/(tabs)/index");
   };
 
   return (
@@ -52,7 +52,6 @@ export default function Criar() {
           </Pressable>
           <Text style={styles.titulo}>Criar Conta</Text>
 
-          {/* Usuário */}
           <Controller
             control={control}
             name="usuario"

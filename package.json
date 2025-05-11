@@ -5,8 +5,8 @@
   "scripts": {
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web",
     "test": "jest --watchAll",
     "lint": "expo lint"
@@ -38,9 +38,15 @@
     "react-dom": "19.0.0",
     "react-hook-form": "^7.55.0",
     "react-native": "0.79.2",
+<<<<<<< HEAD
     "react-native-gesture-handler": "~2.24.0",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
+=======
+    "react-native-gesture-handler": "~2.25.0",
+    "react-native-reanimated": "3.17.5",
+    "react-native-safe-area-context": "^5.4.0",
+>>>>>>> 98352f9b06432fb188c232007b3c54e6e975f517
     "react-native-screens": "~4.10.0",
     "react-native-web": "^0.20.0",
     "react-native-webview": "13.13.5",

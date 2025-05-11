@@ -37,9 +37,9 @@ export default function Criar() {
 
   const onSubmit = (data: any) => {
     console.log("Dados:", data);
-
-    router.push("./inicio");
+    router.push("/inicio");
   };
+
   return (
     <ImageBackground source={image1} style={x.fundo}>
       <KeyboardAvoidingView

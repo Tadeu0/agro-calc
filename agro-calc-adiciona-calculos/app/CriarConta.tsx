@@ -37,7 +37,7 @@ export default function Criar() {
 
   const onSubmit = (data: any) => {
     console.log("Dados:", data);
-    router.push("/Login");
+    router.push("/inicio");
   };
 
   return (

@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "fitflow",
-    "slug": "fitflow",
+    "name": "Agrocalc",
+    "slug": "Projeto",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "fitflow",
+    "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -16,7 +16,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "package": "com.jefersonnnsoares.Projeto"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +37,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "a4a787c6-ddc6-4466-acb3-43f3c7e95c7d"
+      }
+    },
+    "owner": "jefersonnnsoares"
   }
 }
